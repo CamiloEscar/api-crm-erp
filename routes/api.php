@@ -22,7 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group([
 
     // 'middleware' => 'api',
-    'prefix' => 'auth'
+    'prefix' => 'auth',
+    'middleware' => ['auth:api']
+    // 'middleware' => ['auth:api','role:Super-Admin']
+    // 'middleware' => ['auth:api','role:admin']
+    // 'middleware' => ['auth:api','permission:publish articles|edit articles']
 
 ], function ($router) {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
