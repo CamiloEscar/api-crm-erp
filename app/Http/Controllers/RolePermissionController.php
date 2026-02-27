@@ -40,8 +40,8 @@ class RolePermissionController extends Controller
         $role = Role::create(['guard_name' => 'api','name' => $request->name]);
 
         //["egreso", "ingreso", "close_caja"]
-        foreach($request->permissions as $key => $permission) {
-            $role->givePermissionTo($permission);
+        foreach($request->permisions as $key => $permision) {
+            $role->givePermissionTo($permision);
         }
 
         return response()->json([
@@ -81,7 +81,7 @@ class RolePermissionController extends Controller
         $role->update($request->all());
 
         //["egreso", "ingreso", "close_caja"]
-        $role->syncPermissions($request->permissions);
+        $role->syncPermissions($request->permisions);
 
 
         return response()->json([

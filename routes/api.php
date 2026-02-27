@@ -38,7 +38,6 @@ Route::group([
 });
 Route::group([
     'middleware' => 'auth:api',
-    'prefix' => 'auth'
 ], function ($router) {
     Route::resource("roles", RolePermissionController::class);
 });
