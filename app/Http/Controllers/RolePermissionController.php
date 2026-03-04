@@ -18,7 +18,7 @@ class RolePermissionController extends Controller
             "total" => $roles->total(),
             "roles" => $roles->map(function($rol) {
                 $rol->permission_pluck = $rol->permissions->pluck("name");
-                $rol->created_at = $rol->created_at->format("Y-m-d h:i A");
+                $rol->created_format_at = $rol->created_at->format("Y-m-d h:i A");
                 return $rol;
             })
         ]);
@@ -50,7 +50,7 @@ class RolePermissionController extends Controller
                 "id" => $role->id,
                 "permission" => $role->permissions,
                 "permission_pluck" => $role->permissions->pluck("name"),
-                "created_at" => $role->created_at->format("Y-m-d h:i A"),
+                "created_format_at" => $role->created_at->format("Y-m-d h:i A"),
                 "name" => $role->name,
             ]
         ]);
@@ -90,7 +90,7 @@ class RolePermissionController extends Controller
                 "id" => $role->id,
                 "permission" => $role->permissions,
                 "permission_pluck" => $role->permissions->pluck("name"),
-                "created_at" => $role->created_at->format("Y-m-d h:i A"),
+                "created_format_at" => $role->created_at->format("Y-m-d h:i A"),
                 "name" => $role->name,
             ]
         ]);
