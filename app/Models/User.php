@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -24,6 +25,15 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'surname',
+        'phone',
+        'role_id',
+        'sucursal_id',
+        'type_document',
+        'n_document',
+        'gender',
+        'avatar',
+        'address'
     ];
 
     /**
@@ -45,6 +55,12 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+
+
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

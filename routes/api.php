@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolePermissionController;
+use App\Http\Controllers\UserAccessController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,4 +41,5 @@ Route::group([
     'middleware' => 'auth:api',
 ], function ($router) {
     Route::resource("roles", RolePermissionController::class);
+    Route::resource("users", UserAccessController::class);
 });
