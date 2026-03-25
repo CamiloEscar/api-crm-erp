@@ -35,12 +35,18 @@ class UserAccessController extends Controller
                     'type_document' => $user->type_document,
                     'n_document' => $user->n_document,
                     'gender' => $user->gender,
-                    'avatar' => $user->avatar ? env('APP_URL')."storage/".$user->avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmMSch-oLFQ6WIXM9QT8KQlw78Is6pJ8sAmA&s',
+                    'avatar' => $user->avatar ? env('APP_URL')."/storage/".$user->avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmMSch-oLFQ6WIXM9QT8KQlw78Is6pJ8sAmA&s',
                     'address' => $user->address,
                     'created_format_at' => $user->created_at->format('Y-m-d h:i A')
 
                 ];
             })
+        ]);
+    }
+
+    public function config() {
+        return response()->json([
+            "roles" => Role::all()
         ]);
     }
 
@@ -87,7 +93,7 @@ class UserAccessController extends Controller
                     'type_document' => $user->type_document,
                     'n_document' => $user->n_document,
                     'gender' => $user->gender,
-                    'avatar' => $user->avatar ? env('APP_URL')."storage/".$user->avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmMSch-oLFQ6WIXM9QT8KQlw78Is6pJ8sAmA&s',
+                    'avatar' => $user->avatar ? env('APP_URL')."/storage/".$user->avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmMSch-oLFQ6WIXM9QT8KQlw78Is6pJ8sAmA&s',
                     'address' => $user->address,
                     'created_format_at' => $user->created_at->format('Y-m-d h:i A')
             ]
