@@ -106,6 +106,9 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+        $permissions = auth('api')->user()->getAllPermissions()->map(function($perm) {
+            return $perm->name;
+        });
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
@@ -113,7 +116,11 @@ class AuthController extends Controller
             'user' => [
                 "full_name" => auth('api')->user()->name." ".auth('api')->user()->surname,
                 "email"=> auth('api')->user()->email,
-            ]
+                "avatar"=> auth('api')->user()->avatar ? env('APP_URL')."/storage/".auth('api')->user()->avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmMSch-oLFQ6WIXM9QT8KQlw78Is6pJ8sAmA&s',
+                "role_name"=> auth('api')->user()->role->name,
+                "permissions" => $permissions
+
+                ]
         ]);
     }
 }
